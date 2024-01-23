@@ -22,7 +22,7 @@ List<Question> getQuestions() {
         ['Sớm', 'Đúng hạn', 'Trễ hạn']),
     Question(
         4,
-        'Số lần Ông/bà liên hệ với Bộ phận tiếp nhận và  trả kết quả để hoàn thiện hồ sơ (không tính lần nộp hồ sơ đầu tiên và nguyên nhân bổ sung do lỗi của người nộp hồ sơ)',
+        'Số lần Ông/bà liên hệ với Bộ phận tiếp nhận và trả kết quả để hoàn thiện hồ sơ (không tính lần nộp hồ sơ đầu tiên và nguyên nhân bổ sung do lỗi của người nộp hồ sơ)',
         ['Không', 'Một lần', 'Hơn một lần']),
     Question(
         5,

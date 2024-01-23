@@ -7,7 +7,6 @@ class RatingVerticalLayout extends ConsumerStatefulWidget {
   ConsumerState createState() => _RatingVerticalLayoutState();
 }
 
-List<Question> questions = getQuestions();
 
 class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
   void clickGood(Rating value) {
@@ -22,7 +21,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
 
   Future<void> _dialogBuilder(BuildContext context, Rating value) {
     final answerString =
-        questions.map((question) => question.selectedAnswer).join(', ');
+        questions.map((question) => question.selectedAnswer).join(';');
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -50,7 +49,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                     'Vui lòng đánh giá: ',
                     style: context.getTextTheme().titleLarge,
                   ),
-                  RatingDialog(),
+                  const RatingDialog(),
                 ],
               ),
             ),
@@ -58,9 +57,8 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
           actions: <Widget>[
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-                primary: Colors.grey, // Màu nền của nút
-                minimumSize: Size(200, 70), // Kích thước tối thiểu của nút
+                textStyle: Theme.of(context).textTheme.labelLarge, backgroundColor: Colors.grey, // Màu nền của nút
+                minimumSize: const Size(200, 70), // Kích thước tối thiểu của nút
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -72,9 +70,8 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-                primary: Colors.red, // Màu nền của nút
-                minimumSize: Size(200, 70), // Kích thước tối thiểu của nút
+                textStyle: Theme.of(context).textTheme.labelLarge, backgroundColor: Colors.red, // Màu nền của nút
+                minimumSize: const Size(200, 70), // Kích thước tối thiểu của nút
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -235,37 +232,6 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
             ],
           ),
         ),
-        // Expanded(
-        //   flex: 1,
-        //   child: offTime
-        //       ? Row(
-        //     children: [
-        //       const Spacer(
-        //         flex: 1,
-        //       ),
-        //       ...Rating.values
-        //           .map((e) => Expanded(
-        //         flex: 1,
-        //         child: ElevatedButton(
-        //           onPressed: () {
-        //             clickGood(e);
-        //           },
-        //           style: TextButton.styleFrom(
-        //             backgroundColor: Colors.red, // Màu nền của nút
-        //             padding: const EdgeInsets.all(40), // Kích thước nút
-        //           ),
-        //           child: Text(
-        //             e.emoji,
-        //             style: const TextStyle(fontSize: 30),
-        //           ),
-        //         ),
-        //       ))
-        //           .toList(),
-        //       const Spacer(),
-        //     ],
-        //   )
-        //       : const SizedBox(),
-        // )
       ],
     );
   }

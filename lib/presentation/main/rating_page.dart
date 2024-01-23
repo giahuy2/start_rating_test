@@ -4,7 +4,6 @@ import 'package:flutter_rating_app/core/constant.dart';
 import 'package:flutter_rating_app/core/extensions.dart';
 import 'package:flutter_rating_app/gen/assets.gen.dart';
 import 'package:flutter_rating_app/presentation/app_loading.dart';
-import 'package:flutter_rating_app/presentation/main/emoji_widget.dart';
 import 'package:flutter_rating_app/presentation/main/rating_controller.dart';
 import 'package:flutter_rating_app/presentation/main/rating_dialog/question.dart';
 import 'package:flutter_rating_app/presentation/main/rating_dialog/rating_dialog.dart';
@@ -22,7 +21,7 @@ class RatingPage extends ConsumerStatefulWidget {
   @override
   ConsumerState createState() => _RatingPageState();
 }
-
+List<Question> questions = getQuestions();
 class _RatingPageState extends ConsumerState<RatingPage> {
   @override
   void initState() {
@@ -30,6 +29,7 @@ class _RatingPageState extends ConsumerState<RatingPage> {
   }
 
   final assetsAudioPlayer = AssetsAudioPlayer();
+
 
   @override
   Widget build(BuildContext context) {

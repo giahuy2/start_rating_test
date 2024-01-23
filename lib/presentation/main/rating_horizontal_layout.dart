@@ -8,10 +8,9 @@ class RatingHorizontalLayout extends ConsumerStatefulWidget {
 }
 
 class _RatingHorizontalLayoutState extends ConsumerState<RatingHorizontalLayout> {
-  late final TextEditingController _feedBackController = TextEditingController();
   late final assetsAudioPlayer = AssetsAudioPlayer();
 
-  void clickAngry(Rating value) {
+  void clickGood(Rating value) {
     if (value == Rating.good) {
       _dialogBuilder(context, value);
     } else {
@@ -20,43 +19,67 @@ class _RatingHorizontalLayoutState extends ConsumerState<RatingHorizontalLayout>
   }
 
   Future<void> _dialogBuilder(BuildContext context, Rating value) {
-    _feedBackController.clear();
+    final answerString =
+    questions.map((question) => question.selectedAnswer).join(';');
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Bạn chưa hài lòng về dịch vụ của chúng tôi?'),
-          content: SingleChildScrollView(
-            child: Column(
-              children: [
-                const Text('Hãy cho chúng tôi vài lời nhận xét để cải thiện dịch vụ tốt hơn\n'),
-                TextField(
-                  controller: _feedBackController,
-                  maxLines: 1,
-                )
-              ],
+          content: Scrollbar(
+            thumbVisibility: true,
+            trackVisibility: true,
+            // Hiển thị thanh cuộn khi di chuột
+            thickness: 20.0,
+            // Độ dày thanh cuộn
+            radius: const Radius.circular(10.0),
+            // Bán kính của đầu thanh cuộn
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              controller: ScrollController(),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    'Vui lòng đánh giá: ',
+                    style: context.getTextTheme().titleLarge,
+                  ),
+                  const RatingDialog(),
+                ],
+              ),
             ),
           ),
           actions: <Widget>[
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge, backgroundColor: Colors.grey, // Màu nền của nút
+                minimumSize: const Size(200, 70), // Kích thước tối thiểu của nút
               ),
-              child: const Text('Huỷ'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
+              child: const Text(
+                'Hủy',
+                style: TextStyle(fontSize: 30),
+              ),
             ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge, backgroundColor: Colors.red, // Màu nền của nút
+                minimumSize: const Size(200, 70), // Kích thước tối thiểu của nút
               ),
-              child: const Text('Gửi'),
               onPressed: () {
                 Navigator.of(context).pop();
-                feedBack(value, _feedBackController.text);
+                feedBack(value, answerString);
               },
+              child: const Text(
+                'Đánh giá',
+                style: TextStyle(fontSize: 30),
+              ),
             ),
           ],
         );
@@ -65,10 +88,10 @@ class _RatingHorizontalLayoutState extends ConsumerState<RatingHorizontalLayout>
   }
 
   void feedBack(Rating value, String? note) {
-    _feedBackController.clear();
     ref.read(ratingControllerProvider.notifier).onFeedBack(value, note);
     assetsAudioPlayer.open(Audio('assets/audios/success_sound.mp3'));
   }
+
   @override
   Widget build(BuildContext context) {
     final offTime = ref.watch(offTimeProvider);
@@ -86,6 +109,13 @@ class _RatingHorizontalLayoutState extends ConsumerState<RatingHorizontalLayout>
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const Text(
+                      'THÔNG TIN CÁN BỘ',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Consumer(builder: (context, ref, d) {
                       final image = ref.watch(imageUserProvider);
                       return Container(
@@ -155,35 +185,41 @@ class _RatingHorizontalLayoutState extends ConsumerState<RatingHorizontalLayout>
                               ?.copyWith(fontWeight: FontWeight.w700, fontSize: 44, color: Colors.red),
                         );
                       }),
-                      const Spacer(flex: 2,),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Container(
+                        child: offTime
+                            ? ElevatedButton(
+                          onPressed: () {
+                            clickGood(Rating.good);
+                          },
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.lightBlueAccent[200],
+                            // Màu nền của nút
+                            padding: const EdgeInsets.only(
+                                left: 50,
+                                right: 50,
+                                top: 30,
+                                bottom: 30), // Kích thước nút
+                          ),
+                          child: const Text(
+                            'ĐÁNH GIÁ',
+                            style: TextStyle(
+                              fontSize: 30,
+                            ),
+                          ),
+                        )
+                            : const SizedBox(),
+                      ),
+                      const Spacer(
+                        flex: 2,
+                      ),
                     ],
                   ),
                 )
               ],
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: offTime
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const Spacer(),
-                      ...Rating.values
-                          .map((e) => Expanded(
-                                flex: 1,
-                                child: EmojiWidget(
-                                  rating: e,
-                                  actionClick: (value) {
-                                    clickAngry(value);
-                                  },
-                                ),
-                              ))
-                          .toList(),
-                      const Spacer(),
-                    ],
-                  )
-                : const SizedBox(),
           ),
         ],
       ),

@@ -5,13 +5,11 @@ import 'package:flutter_rating_app/presentation/main/rating_page.dart';
 class RatingDialog extends StatefulWidget {
   const RatingDialog({super.key});
 
-
   @override
   _RatingDialogState createState() => _RatingDialogState();
 }
 
 class _RatingDialogState extends State<RatingDialog> {
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -21,47 +19,47 @@ class _RatingDialogState extends State<RatingDialog> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: questions
-              .map((question) => _buildQuestionRow(context, question, questions.indexOf(question) + 1))
+              .map((question) => _buildQuestionRow(
+                  context, question, questions.indexOf(question) + 1))
               .toList(),
         ),
       ),
-      // actions: [
-      //   TextButton(
-      //     onPressed: () {
-      //       Navigator.of(context).pop();
-      //     },
-      //     child: const Text('Đóng'),
-      //   ),
-      //   TextButton(
-      //     onPressed: () {
-      //       print('Đánh Giá: ${questions.map((question) => question.selectedAnswer).join(', ')}');
-      //     },
-      //     child: const Text('Đánh Giá'),
-      //   ),
-      // ],
     );
   }
 
-  Widget _buildQuestionRow(BuildContext context, Question question, int questionNumber) {
+  Widget _buildQuestionRow(
+      BuildContext context, Question question, int questionNumber) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Divider(),
-        Text(
-          question.questionText,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '${question.id}. ',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Expanded(
+              child: Text(
+                question.questionText,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
         ),
-
         if (questionNumber == 7)
           Column(
             children: question.answerOptions
-                .map((answer) => _buildRadioWithText(context, questionNumber, answer))
+                .map((answer) =>
+                    _buildRadioWithText(context, questionNumber, answer))
                 .toList(),
           ),
         if (questionNumber != 7)
           Row(
             children: question.answerOptions
-                .map((answer) => _buildRadioWithText(context, questionNumber, answer))
+                .map((answer) =>
+                    _buildRadioWithText(context, questionNumber, answer))
                 .toList(),
           ),
       ],
@@ -86,4 +84,3 @@ class _RatingDialogState extends State<RatingDialog> {
     );
   }
 }
-
