@@ -104,7 +104,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
                   Padding(
-                    padding:  EdgeInsets.only(left: context.getScreenWidth() / 14),
+                    padding:  EdgeInsets.only(left: context.getScreenWidth() / 25),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,7 +113,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                           padding: EdgeInsets.only(left: 20.0),
                           child: Text(
                             'THÔNG TIN CÁN BỘ',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25),
                           ),
                         ),
                         const SizedBox(
@@ -155,7 +155,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                     ),
                   ),
               Padding(
-                padding: EdgeInsets.only(right: context.getScreenWidth() / 7),
+                padding: EdgeInsets.only(right: context.getScreenWidth() / 25),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -170,7 +170,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                         // Chuyển đổi chuỗi thành chữ in hoa
                         style: context.getTextTheme().headlineMedium?.copyWith(
                               fontWeight: FontWeight.w700,
-                              fontSize: 60,
+                              fontSize: 40,
                               color: Colors.black,
                             ),
                       );
@@ -184,7 +184,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                         department.toUpperCase(),
                         style: context.getTextTheme().headlineMedium?.copyWith(
                             fontWeight: FontWeight.w700,
-                            fontSize: 60,
+                            fontSize: 45,
                             color: Colors.red),
                       );
                     }),
@@ -198,7 +198,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                         name,
                         style: context.getTextTheme().headlineMedium?.copyWith(
                             fontWeight: FontWeight.w700,
-                            fontSize: 60,
+                            fontSize: 40,
                             color: Colors.red),
                       );
                     }),
@@ -206,28 +206,35 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                       height: 50,
                     ),
                     Container(
-                      child: offTime
+                      child: !offTime
                           ? ElevatedButton(
-                              onPressed: () {
-                                clickGood(Rating.good);
-                              },
-                              style: TextButton.styleFrom(
-                                backgroundColor: Colors.lightBlueAccent[200],
-                                // Màu nền của nút
-                                padding: const EdgeInsets.only(
-                                    left: 60,
-                                    right: 60,
-                                    top: 40,
-                                    bottom: 40), // Kích thước nút
-                              ),
-                              child: const Text(
-                                'ĐÁNH GIÁ',
-                                style: TextStyle(
-                                  fontSize: 40,
-                                ),
-                              ),
-                            )
-                          : const SizedBox(),
+                        onPressed: null,
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.grey,
+                          padding: const EdgeInsets.only(left: 60, right: 60, top: 40, bottom: 40),
+                        ),
+                        child: const Text(
+                          'ĐÁNH GIÁ',
+                          style: TextStyle(
+                            fontSize: 40,
+                          ),
+                        ),
+                      )
+                          : ElevatedButton(
+                        onPressed: () {
+                          clickGood(Rating.good);
+                        },
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.lightBlueAccent[200],
+                          padding: const EdgeInsets.only(left: 60, right: 60, top: 40, bottom: 40),
+                        ),
+                        child: const Text(
+                          'ĐÁNH GIÁ',
+                          style: TextStyle(
+                            fontSize: 40,
+                          ),
+                        ),
+                      ),
                     ),
                     const Spacer(
                       flex: 1,

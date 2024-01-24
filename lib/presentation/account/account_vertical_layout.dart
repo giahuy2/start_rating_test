@@ -31,7 +31,7 @@ class _AccountVerticalLayoutState extends ConsumerState<AccountVerticalLayout> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: context.getScreenWidth() / 15),
+                  padding: EdgeInsets.only(left: context.getScreenWidth() / 30),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -41,7 +41,7 @@ class _AccountVerticalLayoutState extends ConsumerState<AccountVerticalLayout> {
                             return Container(
                               width: context.getScreenHeight() / 3,
                               height: context.getScreenHeight() / 3,
-                              margin: const EdgeInsets.only(left: 16.0),
+                              margin: const EdgeInsets.only(left: 16.0,right: 8.0),
                               padding: const EdgeInsets.all(12.0),
                               decoration: BoxDecoration(
                                   color: Colors.white,
@@ -102,7 +102,7 @@ class _AccountVerticalLayoutState extends ConsumerState<AccountVerticalLayout> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: context.getScreenWidth() / 7),
+                  padding: EdgeInsets.only(right: context.getScreenWidth() / 30),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -117,7 +117,7 @@ class _AccountVerticalLayoutState extends ConsumerState<AccountVerticalLayout> {
                           // Chuyển đổi chuỗi thành chữ in hoa
                           style: context.getTextTheme().headlineMedium?.copyWith(
                             fontWeight: FontWeight.w700,
-                            fontSize: 60,
+                            fontSize: 40,
                             color: Colors.black,
                           ),
                         );
@@ -131,7 +131,7 @@ class _AccountVerticalLayoutState extends ConsumerState<AccountVerticalLayout> {
                           department.toUpperCase(),
                           style: context.getTextTheme().headlineMedium?.copyWith(
                               fontWeight: FontWeight.w700,
-                              fontSize: 60,
+                              fontSize: 45,
                               color: Colors.red),
                         );
                       }),
@@ -145,7 +145,7 @@ class _AccountVerticalLayoutState extends ConsumerState<AccountVerticalLayout> {
                           name,
                           style: context.getTextTheme().headlineMedium?.copyWith(
                               fontWeight: FontWeight.w700,
-                              fontSize: 60,
+                              fontSize: 40,
                               color: Colors.red),
                         );
                       }),
