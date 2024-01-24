@@ -13,7 +13,6 @@ class _RatingDialogState extends State<RatingDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Bảng đánh giá'),
       content: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +31,6 @@ class _RatingDialogState extends State<RatingDialog> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Divider(),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -62,6 +60,7 @@ class _RatingDialogState extends State<RatingDialog> {
                     _buildRadioWithText(context, questionNumber, answer))
                 .toList(),
           ),
+        const Divider(),
       ],
     );
   }

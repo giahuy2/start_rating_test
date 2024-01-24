@@ -21,7 +21,9 @@ class RatingPage extends ConsumerStatefulWidget {
   @override
   ConsumerState createState() => _RatingPageState();
 }
+
 List<Question> questions = getQuestions();
+
 class _RatingPageState extends ConsumerState<RatingPage> {
   @override
   void initState() {
@@ -29,7 +31,6 @@ class _RatingPageState extends ConsumerState<RatingPage> {
   }
 
   final assetsAudioPlayer = AssetsAudioPlayer();
-
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +40,11 @@ class _RatingPageState extends ConsumerState<RatingPage> {
         assetsAudioPlayer.open(
           Audio("success_sound.mp3"),
         );
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Cám ơn bạn đã đánh giá!',style: TextStyle(fontSize: 30),)));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+          'Cám ơn bạn đã đánh giá!',
+          style: TextStyle(fontSize: 30),
+        )));
       } else if (next is AsyncLoading) {
         AppLoading.show(context, ref);
       } else {
@@ -55,7 +59,8 @@ class _RatingPageState extends ConsumerState<RatingPage> {
           preferredSize: const Size.fromHeight(100),
           child: AppBar(
             backgroundColor: Colors.red,
-            toolbarHeight: 100.0, // Thay đổi độ cao của AppBar
+            toolbarHeight: 100.0,
+            // Thay đổi độ cao của AppBar
             centerTitle: true,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -72,29 +77,27 @@ class _RatingPageState extends ConsumerState<RatingPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      offTime
-                          ? 'BỘ PHẬN TIẾP NHẬN VÀ TRẢ KẾT QUẢ'
-                          : "",
+                      'BỘ PHẬN TIẾP NHẬN VÀ TRẢ KẾT QUẢ',
                       style: context.getTextTheme().headlineMedium?.copyWith(
                           fontSize: 30,
                           fontWeight: FontWeight.w600,
                           color: Colors.white),
                       textAlign: TextAlign.center,
                     ),
-                    Text(offTime
-                        ? 'HUYỆN THẠCH THẤT'
-                        : "Tạm nghỉ",
+                    Text(
+                      'HUYỆN THẠCH THẤT',
                       style: context.getTextTheme().headlineMedium?.copyWith(
                           fontSize: 25,
                           fontWeight: FontWeight.w600,
-                          color: Colors.white),),
-                    Text(offTime
-                        ? 'Hành chính công vụ'
-                        : "",
+                          color: Colors.white),
+                    ),
+                    Text(
+                      'Hành chính công vụ',
                       style: context.getTextTheme().headlineMedium?.copyWith(
                           fontSize: 25,
                           fontWeight: FontWeight.w600,
-                          color: Colors.white),),
+                          color: Colors.white),
+                    ),
                   ],
                 ),
               ],

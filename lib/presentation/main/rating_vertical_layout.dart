@@ -7,7 +7,6 @@ class RatingVerticalLayout extends ConsumerStatefulWidget {
   ConsumerState createState() => _RatingVerticalLayoutState();
 }
 
-
 class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
   void clickGood(Rating value) {
     if (value == Rating.good) {
@@ -46,7 +45,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                     height: 8,
                   ),
                   Text(
-                    'Vui lòng đánh giá: ',
+                    'Nhằm nâng cao chất lượng công tác phục vụ, kính mong nhận được phản hồi khách quan của Ông/Bà các câu hỏi sau đây.\nXin trân trọng cảm ơn!',
                     style: context.getTextTheme().titleLarge,
                   ),
                   const RatingDialog(),
@@ -57,8 +56,11 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
           actions: <Widget>[
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge, backgroundColor: Colors.grey, // Màu nền của nút
-                minimumSize: const Size(200, 70), // Kích thước tối thiểu của nút
+                textStyle: Theme.of(context).textTheme.labelLarge,
+                backgroundColor: Colors.grey,
+                // Màu nền của nút
+                minimumSize:
+                    const Size(200, 70), // Kích thước tối thiểu của nút
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -70,8 +72,10 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge, backgroundColor: Colors.red, // Màu nền của nút
-                minimumSize: const Size(200, 70), // Kích thước tối thiểu của nút
+                textStyle: Theme.of(context).textTheme.labelLarge,
+                backgroundColor: Colors.red, // Màu nền của nút
+                minimumSize:
+                    const Size(200, 70), // Kích thước tối thiểu của nút
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -100,149 +104,160 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
       children: [
         Expanded(
           flex: 6,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-                  Padding(
-                    padding:  EdgeInsets.only(left: context.getScreenWidth() / 25),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20.0),
-                          child: Text(
-                            'THÔNG TIN CÁN BỘ',
-                            style: TextStyle(fontSize: 25),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Consumer(builder: (context, ref, w) {
-                          final image = ref.watch(imageUserProvider);
-                          return Container(
-                            width: context.getScreenHeight() / 3,
-                            height: context.getScreenHeight() / 3,
-                            margin: const EdgeInsets.only(left: 16.0),
-                            padding: const EdgeInsets.all(12.0),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(16.0),
-                                border: Border.all(color: Colors.black, width: 1.2)),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(16.0),
-                              child: image.isEmpty
-                                  ? Assets.png.userDefault.image()
-                                  : Image.network(
-                                      image,
-                                      fit: BoxFit.cover,
-                                    ),
-                            ),
-                          );
-                        }),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Text(
-                            !offTime ? 'Tạm nghỉ' : "Hoạt động",
-                            style: context.getTextTheme().headlineMedium,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-              Padding(
-                padding: EdgeInsets.only(right: context.getScreenWidth() / 25),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 40.0,right: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Spacer(
-                      flex: 1,
-                    ),
-                    Consumer(builder: (context, ref, d) {
-                      final field = ref.watch(fieldUserProvider);
-                      debugPrint(' Alo alo -> $field ');
-                      return Text(
-                        field.toUpperCase(),
-                        // Chuyển đổi chuỗi thành chữ in hoa
-                        style: context.getTextTheme().headlineMedium?.copyWith(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 40,
-                              color: Colors.black,
-                            ),
-                      );
-                    }),
-                    const SizedBox(
-                      height: 24.0,
-                    ),
-                    Consumer(builder: (context, ref, d) {
-                      final department = ref.watch(departmentUserProvider);
-                      return Text(
-                        department.toUpperCase(),
-                        style: context.getTextTheme().headlineMedium?.copyWith(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 45,
-                            color: Colors.red),
-                      );
-                    }),
-                    const SizedBox(
-                      height: 24.0,
-                    ),
-                    Consumer(builder: (context, ref, d) {
-                      final name = ref.watch(nameUserProvider);
-                      debugPrint(' Alo alo name -> $name ');
-                      return Text(
-                        name,
-                        style: context.getTextTheme().headlineMedium?.copyWith(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 40,
-                            color: Colors.red),
-                      );
-                    }),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    Container(
-                      child: !offTime
-                          ? ElevatedButton(
-                        onPressed: null,
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.grey,
-                          padding: const EdgeInsets.only(left: 60, right: 60, top: 40, bottom: 40),
-                        ),
-                        child: const Text(
-                          'ĐÁNH GIÁ',
-                          style: TextStyle(
-                            fontSize: 40,
-                          ),
-                        ),
-                      )
-                          : ElevatedButton(
-                        onPressed: () {
-                          clickGood(Rating.good);
-                        },
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.lightBlueAccent[200],
-                          padding: const EdgeInsets.only(left: 60, right: 60, top: 40, bottom: 40),
-                        ),
-                        child: const Text(
-                          'ĐÁNH GIÁ',
-                          style: TextStyle(
-                            fontSize: 40,
-                          ),
-                        ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        'THÔNG TIN CÁN BỘ',
+                        style: TextStyle(fontSize: 21),
                       ),
                     ),
-                    const Spacer(
-                      flex: 1,
+                    const SizedBox(
+                      height: 20,
                     ),
+                    Consumer(builder: (context, ref, w) {
+                      final image = ref.watch(imageUserProvider);
+                      return Container(
+                        width: context.getScreenHeight() / 3,
+                        height: context.getScreenHeight() / 3,
+                        margin: const EdgeInsets.only(left: 16.0),
+                        padding: const EdgeInsets.all(12.0),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16.0),
+                            border:
+                                Border.all(color: Colors.black, width: 1.2)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(16.0),
+                          child: image.isEmpty
+                              ? Assets.png.userDefault.image()
+                              : Image.network(
+                                  image,
+                                  fit: BoxFit.cover,
+                                ),
+                        ),
+                      );
+                    }),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        !offTime ? 'Tạm nghỉ' : "Hoạt động",
+                        style: !offTime
+                            ? context
+                                .getTextTheme()
+                                .headlineMedium
+                                ?.copyWith(color: Colors.grey)
+                            : context
+                                .getTextTheme()
+                                .headlineMedium
+                                ?.copyWith(color: Colors.lightBlueAccent[200]),
+                      ),
+                    )
                   ],
                 ),
-              )
-            ],
+                const SizedBox(width: 100,),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Spacer(
+                        flex: 1,
+                      ),
+                      Consumer(builder: (context, ref, d) {
+                        final field = ref.watch(fieldUserProvider);
+                        debugPrint(' Alo alo -> $field ');
+                        return Text(
+                          field.toUpperCase(),
+                          // Chuyển đổi chuỗi thành chữ in hoa
+                          style: context.getTextTheme().headlineMedium?.copyWith(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 40,
+                                color: Colors.black,
+                              ),
+                        );
+                      }),
+                      const SizedBox(
+                        height: 24.0,
+                      ),
+                      Consumer(builder: (context, ref, d) {
+                        final department = ref.watch(departmentUserProvider);
+                        return Text(
+                          department.toUpperCase(),
+                          style: context.getTextTheme().headlineMedium?.copyWith(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 45,
+                              color: Colors.red),
+                        );
+                      }),
+                      const SizedBox(
+                        height: 24.0,
+                      ),
+                      Consumer(builder: (context, ref, d) {
+                        final name = ref.watch(nameUserProvider);
+                        debugPrint(' Alo alo name -> $name ');
+                        return Text(
+                          name,
+                          style: context.getTextTheme().headlineMedium?.copyWith(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 40,
+                              color: Colors.red),
+                        );
+                      }),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Container(
+                        child: !offTime
+                            ? ElevatedButton(
+                                onPressed: null,
+                                style: TextButton.styleFrom(
+                                  backgroundColor: Colors.grey,
+                                  padding: const EdgeInsets.only(
+                                      left: 60, right: 60, top: 40, bottom: 40),
+                                ),
+                                child: const Text(
+                                  'ĐÁNH GIÁ',
+                                  style: TextStyle(
+                                    fontSize: 40,
+                                  ),
+                                ),
+                              )
+                            : ElevatedButton(
+                                onPressed: () {
+                                  clickGood(Rating.good);
+                                },
+                                style: TextButton.styleFrom(
+                                  backgroundColor: Colors.lightBlueAccent[200],
+                                  padding: const EdgeInsets.only(
+                                      left: 60, right: 60, top: 40, bottom: 40),
+                                ),
+                                child: const Text(
+                                  'ĐÁNH GIÁ',
+                                  style: TextStyle(
+                                    fontSize: 40,
+                                  ),
+                                ),
+                              ),
+                      ),
+                      const Spacer(
+                        flex: 1,
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ],

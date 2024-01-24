@@ -31,7 +31,7 @@ class _AccountVerticalLayoutState extends ConsumerState<AccountVerticalLayout> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: context.getScreenWidth() / 30),
+                  padding: EdgeInsets.only(left: context.getScreenWidth() / 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -101,10 +101,9 @@ class _AccountVerticalLayoutState extends ConsumerState<AccountVerticalLayout> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(right: context.getScreenWidth() / 30),
+                Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Spacer(
                         flex: 1,
@@ -158,7 +157,6 @@ class _AccountVerticalLayoutState extends ConsumerState<AccountVerticalLayout> {
                     ],
                   ),
                 )
-
               ],
             ),
           ),
