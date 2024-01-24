@@ -11,10 +11,9 @@ import 'package:flutter_rating_app/core/network/response/login_response.dart';
 import 'package:retrofit/http.dart';
 
 part 'api_services.g.dart';
-const apiLogin = 'api/v1/auth/login';
-const apiFeedback = 'api/v1/feedbacks';
-const apiGetFeedback = 'api/v1/feedbacks/level';
-const apiCategory = 'api/v1/categories';
+const apiLogin = 'api/v2/auth/login';
+const apiFeedback = 'api/v2/feedbacks';
+
 // const apiListHome = 'api/noauth/listHome';
 
 @RestApi()

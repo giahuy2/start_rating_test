@@ -23,7 +23,7 @@ class DateFormatConstant {
 
 enum Rating {
   // veryGood(emoji: '😊',idEmoji: 1,content: 'Rất tốt'),
-  good(emoji: 'Đánh giá',idEmoji: 2, content: 'Tốt');
+  good(emoji: 'Đánh giá',idEmoji: 2, content: 'Lượt đánh giá');
   // normal(emoji: '😟',idEmoji: 3,content: 'Bình thường'),
   // bad(emoji: '😡',idEmoji: 4,content: 'Không tốt');
   final String emoji;

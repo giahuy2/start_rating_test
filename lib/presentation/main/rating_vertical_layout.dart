@@ -109,9 +109,12 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
-                          'THÔNG TIN CÁN BỘ',
-                          style: TextStyle(fontSize: 30),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 20.0),
+                          child: Text(
+                            'THÔNG TIN CÁN BỘ',
+                            style: TextStyle(fontSize: 30),
+                          ),
                         ),
                         const SizedBox(
                           height: 20,
@@ -141,9 +144,12 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                         const SizedBox(
                           height: 20.0,
                         ),
-                        Text(
-                          !offTime ? 'Tạm nghỉ' : "Hoạt động",
-                          style: context.getTextTheme().headlineMedium,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: Text(
+                            !offTime ? 'Tạm nghỉ' : "Hoạt động",
+                            style: context.getTextTheme().headlineMedium,
+                          ),
                         )
                       ],
                     ),

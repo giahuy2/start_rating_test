@@ -131,10 +131,10 @@ class _AccountHorizontalLayoutState extends ConsumerState<AccountHorizontalLayou
               ],
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: EmojiFeedBack(feedBackCounterResponse: counterFeedback,),
-          )
+          // Expanded(
+          //   flex: 1,
+          //   child: EmojiFeedBack(feedBackCounterResponse: counterFeedback,),
+          // )
         ],
       ),
     );

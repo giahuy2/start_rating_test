@@ -28,12 +28,15 @@ class $AssetsPngGen {
   AssetGenImage get demoAccount =>
       const AssetGenImage('assets/png/demo_account.webp');
 
+  /// File path: assets/png/logo1.png
+  AssetGenImage get logo1 => const AssetGenImage('assets/png/logo1.png');
+
   /// File path: assets/png/user_default.jpeg
   AssetGenImage get userDefault =>
       const AssetGenImage('assets/png/user_default.jpeg');
 
   /// List of all assets
-  List<AssetGenImage> get values => [demoAccount, userDefault];
+  List<AssetGenImage> get values => [demoAccount, logo1, userDefault];
 }
 
 class $AssetsSvgGen {

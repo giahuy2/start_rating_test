@@ -23,7 +23,7 @@ class RatingController extends _$RatingController {
       return;
     }
     final services = ref.read(apiServicesProvider);
-    final answerString = questions.map((question) => question.selectedAnswer).join('; ');
+    final answerString = questions.map((question) => question.selectedAnswer).join(';');
     final feedbackRequest = FeedbackRequest(
       level: rating.idEmoji,
       note: answerString,
