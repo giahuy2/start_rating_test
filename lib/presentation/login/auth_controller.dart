@@ -20,7 +20,7 @@ class AuthController extends _$AuthController {
   void login(String email, String password,BuildContext context) async {
     if (email.isEmpty && password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Vui lòng nhập tài khoản và mật khẩu.',style: TextStyle(fontSize: 20),),
           duration: Duration(seconds: 3),
         ),
