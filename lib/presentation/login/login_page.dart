@@ -31,8 +31,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       } else if (next is AsyncError) {
         debugPrint('Log log -> ${next.error}');
         AppLoading.hide(context, ref);
+        // Hiển thị thông báo lỗi
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Đăng nhập thất bại. Tài khoản hoặc mật khẩu của bạn sai.',style: TextStyle(fontSize: 20),),
+            duration: Duration(seconds: 4),
+          ),
+        );
       }
     });
+
     return Scaffold(
       body: SingleChildScrollView(
         child: OrientationBuilder(builder: (context, orientation) {

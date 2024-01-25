@@ -109,6 +109,20 @@ class _AccountVerticalLayoutState extends ConsumerState<AccountVerticalLayout> {
                         flex: 1,
                       ),
                       Consumer(builder: (context, ref, d) {
+                        final name = ref.watch(nameUserProvider);
+                        debugPrint(' Alo alo name -> $name ');
+                        return Text(
+                          name,
+                          style: context.getTextTheme().headlineMedium?.copyWith(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 50,
+                              color: Colors.red),
+                        );
+                      }),
+                      const SizedBox(
+                        height: 24.0,
+                      ),
+                      Consumer(builder: (context, ref, d) {
                         final field = ref.watch(fieldUserProvider);
                         debugPrint(' Alo alo -> $field ');
                         return Text(
@@ -116,7 +130,7 @@ class _AccountVerticalLayoutState extends ConsumerState<AccountVerticalLayout> {
                           // Chuyển đổi chuỗi thành chữ in hoa
                           style: context.getTextTheme().headlineMedium?.copyWith(
                             fontWeight: FontWeight.w700,
-                            fontSize: 40,
+                            fontSize: 35,
                             color: Colors.black,
                           ),
                         );
@@ -125,26 +139,11 @@ class _AccountVerticalLayoutState extends ConsumerState<AccountVerticalLayout> {
                         height: 24.0,
                       ),
                       Consumer(builder: (context, ref, d) {
-                        final department = ref.watch(departmentUserProvider);
-                        return Text(
-                          department.toUpperCase(),
+                        final phone = ref.watch(phoneUserProvider);
+                        return Text('Điện thoại: ${phone.toUpperCase()}',
                           style: context.getTextTheme().headlineMedium?.copyWith(
                               fontWeight: FontWeight.w700,
                               fontSize: 45,
-                              color: Colors.red),
-                        );
-                      }),
-                      const SizedBox(
-                        height: 24.0,
-                      ),
-                      Consumer(builder: (context, ref, d) {
-                        final name = ref.watch(nameUserProvider);
-                        debugPrint(' Alo alo name -> $name ');
-                        return Text(
-                          name,
-                          style: context.getTextTheme().headlineMedium?.copyWith(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 40,
                               color: Colors.red),
                         );
                       }),

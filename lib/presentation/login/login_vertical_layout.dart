@@ -10,7 +10,7 @@ class LoginVerticalLayout extends ConsumerWidget {
     FocusScope.of(context).unfocus();
     ref.read(authControllerProvider.notifier).login(
           _emailController.text,
-          _passwordController.text,
+          _passwordController.text, context
         );
   }
 

@@ -42,7 +42,7 @@ class _RatingPageState extends ConsumerState<RatingPage> {
         );
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text(
-          'Cám ơn bạn đã đánh giá!',
+          'Cảm ơn Ông/Bà đã phản hồi!',
           style: TextStyle(fontSize: 30),
         )));
       } else if (next is AsyncLoading) {

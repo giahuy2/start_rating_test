@@ -45,7 +45,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                     height: 8,
                   ),
                   Text(
-                    'Nhằm nâng cao chất lượng công tác phục vụ, kính mong nhận được phản hồi khách quan của Ông/Bà các câu hỏi sau đây.\nXin trân trọng cảm ơn!',
+                    'Nhằm nâng cao chất lượng công tác phục vụ, kính mong nhận được phản hồi khách quan của Ông/Bà các câu hỏi sau đây. Xin trân trọng cảm ơn!',
                     style: context.getTextTheme().titleLarge,
                   ),
                   const RatingDialog(),
@@ -97,6 +97,12 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
     assetsAudioPlayer.open(Audio('assets/audios/success_sound.mp3'));
   }
 
+  void resetAnswerValues() {
+    for (var question in questions) {
+      question.selectedAnswer = question.answerOptions[0];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final offTime = ref.watch(offTimeProvider);
@@ -105,11 +111,13 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
         Expanded(
           flex: 6,
           child: Padding(
-            padding: const EdgeInsets.only(left: 28.0,right: 50),
+            padding: const EdgeInsets.only(left: 28.0, right: 50),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: 30,),
+                SizedBox(
+                  width: 30,
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -167,7 +175,9 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                     )
                   ],
                 ),
-                const SizedBox(width: 100,),
+                const SizedBox(
+                  width: 100,
+                ),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -180,10 +190,13 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                         debugPrint(' Alo alo name -> $name ');
                         return Text(
                           name,
-                          style: context.getTextTheme().headlineMedium?.copyWith(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 50,
-                              color: Colors.red),
+                          style: context
+                              .getTextTheme()
+                              .headlineMedium
+                              ?.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 50,
+                                  color: Colors.red),
                         );
                       }),
                       const SizedBox(
@@ -195,11 +208,12 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                         return Text(
                           field.toUpperCase(),
                           // Chuyển đổi chuỗi thành chữ in hoa
-                          style: context.getTextTheme().headlineMedium?.copyWith(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 35,
-                                color: Colors.black,
-                              ),
+                          style:
+                              context.getTextTheme().headlineMedium?.copyWith(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 35,
+                                    color: Colors.black,
+                                  ),
                         );
                       }),
                       const SizedBox(
@@ -207,11 +221,15 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                       ),
                       Consumer(builder: (context, ref, d) {
                         final phone = ref.watch(phoneUserProvider);
-                        return Text('Điện thoại: ${phone.toUpperCase()}',
-                          style: context.getTextTheme().headlineMedium?.copyWith(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 45,
-                              color: Colors.red),
+                        return Text(
+                          'Điện thoại: ${phone.toUpperCase()}',
+                          style: context
+                              .getTextTheme()
+                              .headlineMedium
+                              ?.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 45,
+                                  color: Colors.red),
                         );
                       }),
                       const SizedBox(
@@ -235,6 +253,9 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                               )
                             : ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    resetAnswerValues();
+                                  });
                                   clickGood(Rating.good);
                                 },
                                 style: TextButton.styleFrom(
