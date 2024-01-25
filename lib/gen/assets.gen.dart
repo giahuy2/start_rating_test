@@ -28,6 +28,9 @@ class $AssetsPngGen {
   AssetGenImage get demoAccount =>
       const AssetGenImage('assets/png/demo_account.webp');
 
+  /// File path: assets/png/ic_launch.jpg
+  AssetGenImage get icLaunch => const AssetGenImage('assets/png/ic_launch.jpg');
+
   /// File path: assets/png/logo1.png
   AssetGenImage get logo1 => const AssetGenImage('assets/png/logo1.png');
 
@@ -36,7 +39,7 @@ class $AssetsPngGen {
       const AssetGenImage('assets/png/user_default.jpeg');
 
   /// List of all assets
-  List<AssetGenImage> get values => [demoAccount, logo1, userDefault];
+  List<AssetGenImage> get values => [demoAccount, icLaunch, logo1, userDefault];
 }
 
 class $AssetsSvgGen {

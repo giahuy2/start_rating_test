@@ -48,6 +48,20 @@ class NameUser extends _$NameUser {
 }
 
 @riverpod
+class PhoneUser extends _$NameUser {
+  @override
+  String build() {
+    final authController = ref.watch(authControllerProvider);
+    if (authController.value == null) {
+      final data = ref.watch(appSharePrefProvider);
+      return data.getString(key: AppSharePrefKey.phoneUser) ?? '';
+    } else {
+      return authController.value?.data?.phone ?? '';
+    }
+  }
+}
+
+@riverpod
 class DepartmentUser extends _$NameUser {
   @override
   String build() {

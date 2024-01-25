@@ -36,6 +36,21 @@ final nameUserProvider = AutoDisposeNotifierProvider<NameUser, String>.internal(
 );
 
 typedef _$NameUser = AutoDisposeNotifier<String>;
+String _$phoneUserHash() => r'96d2ee70b8f25fe1c67225361edae42c2f5d5287';
+
+/// See also [PhoneUser].
+@ProviderFor(PhoneUser)
+final phoneUserProvider =
+    AutoDisposeNotifierProvider<PhoneUser, String>.internal(
+  PhoneUser.new,
+  name: r'phoneUserProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$phoneUserHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$PhoneUser = AutoDisposeNotifier<String>;
 String _$departmentUserHash() => r'cff02db3025cb630eeef3eaaac632c2e8c9db1c1';
 
 /// See also [DepartmentUser].

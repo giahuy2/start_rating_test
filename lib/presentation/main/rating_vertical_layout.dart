@@ -60,7 +60,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                 backgroundColor: Colors.grey,
                 // Màu nền của nút
                 minimumSize:
-                    const Size(200, 70), // Kích thước tối thiểu của nút
+                    const Size(200, 60), // Kích thước tối thiểu của nút
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -75,7 +75,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                 textStyle: Theme.of(context).textTheme.labelLarge,
                 backgroundColor: Colors.red, // Màu nền của nút
                 minimumSize:
-                    const Size(200, 70), // Kích thước tối thiểu của nút
+                    const Size(200, 60), // Kích thước tối thiểu của nút
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -105,10 +105,11 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
         Expanded(
           flex: 6,
           child: Padding(
-            padding: const EdgeInsets.only(left: 40.0,right: 30),
+            padding: const EdgeInsets.only(left: 28.0,right: 50),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(width: 30,),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -152,7 +153,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: Text(
-                        !offTime ? 'Tạm nghỉ' : "Hoạt động",
+                        !offTime ? 'Tạm nghỉ' : "XIN CHÀO",
                         style: !offTime
                             ? context
                                 .getTextTheme()
@@ -175,6 +176,20 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                         flex: 1,
                       ),
                       Consumer(builder: (context, ref, d) {
+                        final name = ref.watch(nameUserProvider);
+                        debugPrint(' Alo alo name -> $name ');
+                        return Text(
+                          name,
+                          style: context.getTextTheme().headlineMedium?.copyWith(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 50,
+                              color: Colors.red),
+                        );
+                      }),
+                      const SizedBox(
+                        height: 24.0,
+                      ),
+                      Consumer(builder: (context, ref, d) {
                         final field = ref.watch(fieldUserProvider);
                         debugPrint(' Alo alo -> $field ');
                         return Text(
@@ -182,7 +197,7 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                           // Chuyển đổi chuỗi thành chữ in hoa
                           style: context.getTextTheme().headlineMedium?.copyWith(
                                 fontWeight: FontWeight.w700,
-                                fontSize: 40,
+                                fontSize: 35,
                                 color: Colors.black,
                               ),
                         );
@@ -191,26 +206,11 @@ class _RatingVerticalLayoutState extends ConsumerState<RatingVerticalLayout> {
                         height: 24.0,
                       ),
                       Consumer(builder: (context, ref, d) {
-                        final department = ref.watch(departmentUserProvider);
-                        return Text(
-                          department.toUpperCase(),
+                        final phone = ref.watch(phoneUserProvider);
+                        return Text('Điện thoại: ${phone.toUpperCase()}',
                           style: context.getTextTheme().headlineMedium?.copyWith(
                               fontWeight: FontWeight.w700,
                               fontSize: 45,
-                              color: Colors.red),
-                        );
-                      }),
-                      const SizedBox(
-                        height: 24.0,
-                      ),
-                      Consumer(builder: (context, ref, d) {
-                        final name = ref.watch(nameUserProvider);
-                        debugPrint(' Alo alo name -> $name ');
-                        return Text(
-                          name,
-                          style: context.getTextTheme().headlineMedium?.copyWith(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 40,
                               color: Colors.red),
                         );
                       }),
